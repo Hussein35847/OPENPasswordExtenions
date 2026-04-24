@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "OPEN PASSWORD",
+  "version": "1.0",
+  "description": "A beautiful and functional password generator and vault.",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon.png",
+    "default_title": "OPEN PASSWORD"
+  },
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ]
+}

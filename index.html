@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPEN PASSWORD</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <meta name="description"
+        content="A beautiful and functional password generator. Create secure, easy to read, or easy to say passwords.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="generator-container" id="generatorCard">
+        <header>
+            <div class="header-top"
+                style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+                <h1 style="margin-bottom: 0;">OPEN PASSWORD</h1>
+                <div style="display:flex; gap: 0.5rem;">
+                    <button id="themeToggleBtn" class="vault-btn" title="Toggle Theme" style="padding: 0.5rem;">
+                        <svg id="themeIconSun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg id="themeIconMoon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg id="themeIconAuto" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </button>
+                    <button id="openVaultBtn" class="vault-btn" title="Open Vault">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Vault
+                    </button>
+                </div>
+            </div>
+            <p>Generate secure, readable, or pronounceable passwords instantly.</p>
+            <div class="app-tabs" style="display: flex; background: rgba(0,0,0,0.2); padding: 0.35rem; border-radius: 12px; margin-top: 1.5rem; gap: 0.25rem;">
+                <button id="tabGen" class="tab-btn active">Generator</button>
+                <button id="tabHard" class="tab-btn">Hardener</button>
+            </div>
+        </header>
+
+        <div id="viewGenerator">
+
+        <section class="display-section">
+            <div class="password-display">
+                <input type="text" id="passwordText" placeholder="Type a password or Generate...">
+                <div class="action-buttons" style="display: flex; gap: 0.5rem; margin-left: 0.5rem;">
+                    <button id="toggleVisibilityBtn" class="action-btn" aria-label="Toggle Password Visibility" title="Show/Hide">
+                        <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                    </button>
+                    <button id="saveBtn" class="action-btn" aria-label="Save Password" title="Save to Vault">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                    </button>
+                    <button id="copyBtn" class="action-btn" aria-label="Copy Password" title="Copy to clipboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="strength-meter">
+                <div class="strength-bar" id="strengthBar"></div>
+                <span class="strength-text" id="strengthText">Medium</span>
+                <span class="entropy-text" id="entropyText"
+                    style="font-size:0.75rem; font-weight: 500; font-family: ui-monospace, monospace; color:var(--text-secondary); margin-left:10px; flex-shrink: 0; min-width: 65px; text-align: left;"></span>
+            </div>
+        </section>
+
+        <section class="controls-section">
+            <div class="presets-group">
+                <label style="display:block; font-weight:500; margin-bottom:0.75rem; color:var(--text-primary);">Goal-based Presets</label>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom: 1rem;">
+                    <button class="preset-btn active" data-preset="custom">Custom</button>
+                    <button class="preset-btn" data-preset="gmail">Gmail / Web</button>
+                    <button class="preset-btn" data-preset="wifi">Wi-Fi</button>
+                    <button class="preset-btn" data-preset="apple">Apple ID</button>
+                    <button class="preset-btn" data-preset="crypto">Crypto Wallet</button>
+                    <button class="preset-btn" data-preset="pin">PIN</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="length-header">
+                    <label for="lengthSlider">Password Length</label>
+                    <span id="lengthValue" class="length-value">16</span>
+                </div>
+                <input type="range" id="lengthSlider" min="6" max="64" value="16" step="1">
+            </div>
+
+            <div class="type-selector">
+                <div class="radio-option">
+                    <input type="radio" id="typeAll" name="pwdType" value="all" checked>
+                    <label for="typeAll">
+                        <span class="radio-custom"></span>
+                        <div class="label-text">
+                            <strong>All Characters</strong>
+                            <span>Any character combination</span>
+                        </div>
+                    </label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="typeRead" name="pwdType" value="read">
+                    <label for="typeRead">
+                        <span class="radio-custom"></span>
+                        <div class="label-text">
+                            <strong>Easy to Read</strong>
+                            <span>Avoids ambiguous chars (l, 1, O, 0)</span>
+                        </div>
+                    </label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="typeSay" name="pwdType" value="say">
+                    <label for="typeSay">
+                        <span class="radio-custom"></span>
+                        <div class="label-text">
+                            <strong>Easy to Say</strong>
+                            <span>Pronounceable words (no numbers/symbols)</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="checkbox-group" id="characterOptions">
+                <label class="checkbox-option">
+                    <input type="checkbox" id="chkUpper" checked>
+                    <span class="checkbox-custom"></span>
+                    Uppercase (A-Z)
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" id="chkLower" checked>
+                    <span class="checkbox-custom"></span>
+                    Lowercase (a-z)
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" id="chkNumbers" checked>
+                    <span class="checkbox-custom"></span>
+                    Numbers (0-9)
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" id="chkSymbols" checked>
+                    <span class="checkbox-custom"></span>
+                    Symbols (!@#$...)
+                </label>
+            </div>
+
+            <button id="generateBtn" class="generate-btn">
+                Generate Password
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.59-10.36l5.25-5.21" />
+                </svg>
+            </button>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid var(--surface-border); margin: 2rem 0;">
+
+        <section class="checker-section">
+            <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                Strength Checker</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Test the strength of your
+                own password without generating one.</p>
+            <div class="password-display" style="margin-bottom: 1rem;">
+                <input type="password" id="testPasswordInput" placeholder="Type password to test...">
+                <div class="action-buttons" style="display: flex; gap: 0.5rem; margin-left: 0.5rem;">
+                    <button id="toggleTestVisibilityBtn" class="action-btn" aria-label="Toggle Password Visibility" title="Show/Hide">
+                        <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="strength-meter">
+                <div class="strength-bar" id="testStrengthBar"></div>
+                <span class="strength-text" id="testStrengthText"></span>
+                <span class="entropy-text" id="testEntropyText"
+                    style="font-size:0.75rem; font-weight: 500; font-family: ui-monospace, monospace; color:var(--text-secondary); margin-left:10px; flex-shrink: 0; min-width: 65px; text-align: left;"></span>
+            </div>
+        </section>
+        </div>
+
+        <div id="viewHardener" style="display: none;">
+            <p class="desc" style="color: var(--text-secondary); margin-bottom: 2rem;">Enter a weak or predictable password, and we'll harden it using cryptographic techniques.</p>
+
+            <div class="input-group" style="position: relative; margin-bottom: 1.5rem;">
+                <input type="password" id="inputPwd" class="custom-input" placeholder="Enter weak password..." style="padding-right: 3rem;">
+                <button class="toggle-btn" id="toggleHardBtn" title="Show/Hide" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+                    <svg id="eyeIconHard" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
+
+            <button class="generate-btn" id="hardenBtn" style="margin-top: 0;">Harden Password</button>
+
+            <div class="hardener-results" id="resultsArea">
+                <div class="hard-timer" id="timerText">Clearing in 15 seconds...</div>
+                
+                <!-- Original -->
+                <div class="hard-card" style="border-color: var(--danger);">
+                    <div class="hard-card-header">
+                        <span class="hard-card-title" style="color: var(--danger);">Original Password</span>
+                        <div>
+                            <span class="strength-text" style="color: var(--danger); font-size: 0.8rem; text-transform: uppercase;" id="origStrength">Weak</span>
+                            <span class="entropy-text" id="origEntropy"></span>
+                        </div>
+                    </div>
+                    <div class="hard-password-row">
+                        <span id="origText"></span>
+                    </div>
+                </div>
+
+                <!-- Variation 1 -->
+                <div class="hard-card">
+                    <div class="hard-card-header">
+                        <span class="hard-card-title">Variation 1: Leetspeak & Padding</span>
+                        <div>
+                            <span class="strength-text" style="color: var(--warning); font-size: 0.8rem; text-transform: uppercase;" id="var1Strength">Medium</span>
+                            <span class="entropy-text" id="var1Entropy"></span>
+                        </div>
+                    </div>
+                    <div class="hard-password-row">
+                        <span id="var1Text"></span>
+                        <button class="vault-act-btn" onclick="copyHardText('var1Text', event)" title="Copy">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                    <p class="hard-explanation">Replaces common letters with symbols (a→@, s→$, i→1, o→0), randomizes casing, and adds secure padding to increase length.</p>
+                </div>
+
+                <!-- Variation 2 -->
+                <div class="hard-card">
+                    <div class="hard-card-header">
+                        <span class="hard-card-title">Variation 2: Cryptographic Injection</span>
+                        <div>
+                            <span class="strength-text" style="color: var(--success); font-size: 0.8rem; text-transform: uppercase;" id="var2Strength">Strong</span>
+                            <span class="entropy-text" id="var2Entropy"></span>
+                        </div>
+                    </div>
+                    <div class="hard-password-row">
+                        <span id="var2Text"></span>
+                        <button class="vault-act-btn" onclick="copyHardText('var2Text', event)" title="Copy">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                    <p class="hard-explanation">Injects cryptographically secure random symbols and numbers between your original characters to break predictable dictionary patterns.</p>
+                </div>
+
+                <!-- Variation 3 -->
+                <div class="hard-card">
+                    <div class="hard-card-header">
+                        <span class="hard-card-title">Variation 3: Maximum Entropy</span>
+                        <div>
+                            <span class="strength-text" style="color: var(--success); font-size: 0.8rem; text-transform: uppercase;" id="var3Strength">Strong</span>
+                            <span class="entropy-text" id="var3Entropy"></span>
+                        </div>
+                    </div>
+                    <div class="hard-password-row">
+                        <span id="var3Text"></span>
+                        <button class="vault-act-btn" onclick="copyHardText('var3Text', event)" title="Copy">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                    <p class="hard-explanation">Completely transforms the structure: mixes leetspeak, random capitalization, and wraps it in a highly secure cryptographically generated prefix/suffix.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Vault Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-card">
+            <h2>Unlock Vault</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">Enter your Master Password
+                to decrypt your saved passwords. If this is your first time, this password will encrypt your vault.</p>
+            <div style="position: relative; margin-bottom: 1.5rem;">
+                <input type="password" id="masterPasswordInput" class="custom-input" placeholder="Master Password..." style="margin-bottom: 0; padding-right: 3rem;" />
+                <button id="toggleMasterVisibilityBtn" type="button" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-actions">
+                <button id="cancelLoginBtn" class="btn-secondary">Cancel</button>
+                <button id="unlockVaultBtn" class="generate-btn" style="margin-top:0;">Unlock</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Name Modal -->
+    <div id="saveConfirmModal" class="modal-overlay">
+        <div class="modal-card">
+            <h2>Save Password</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">Give this password a
+                memorable name (e.g. Netflix, Gmail):</p>
+            <input type="text" id="saveNameInput" class="custom-input" placeholder="Account Name..." />
+            <div class="modal-actions">
+                <button id="cancelSaveBtn" class="btn-secondary">Cancel</button>
+                <button id="confirmSaveBtn" class="generate-btn" style="margin-top:0;">Save Encrypted</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vault List Modal -->
+    <div id="vaultModal" class="modal-overlay">
+        <div class="modal-card vault-card">
+            <div class="vault-header">
+                <h2 style="margin: 0;">Your Vault</h2>
+                <button id="closeVaultBtn" class="btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="vault-list" id="vaultList">
+                <!-- Vault items injected here via JS -->
+            </div>
+            <button id="lockVaultBtn" class="btn-secondary" style="margin-top: 1rem; width:100%;">Lock Vault</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Password Copied to Clipboard!</div>
+    <script src="script.js"></script>
+</body>
+
+</html>
