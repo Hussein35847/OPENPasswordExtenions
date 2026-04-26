@@ -497,15 +497,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .modal-card {
-    background: #0f172a;
-    border: 1px solid var(--surface-border);
+    background: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 2rem;
     width: 90%;
     max-width: 400px;
     transform: translateY(20px);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .modal-overlay.active .modal-card {
@@ -599,37 +601,63 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .vault-list::-webkit-scrollbar-thumb {
-    background: var(--surface-border);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
 }
 
 .vault-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--surface-border);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.vault-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent-primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom;
 }
 
 .vault-item:hover {
-    border-color: var(--accent-primary);
-    background: rgba(0, 242, 254, 0.05);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.vault-item:hover::before {
+    transform: scaleY(1);
+}
+
+.vault-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .vault-item-info strong {
     display: block;
-    color: var(--accent-primary);
-    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    font-weight: 600;
 }
 
 .vault-item-info span {
     font-family: ui-monospace, monospace;
-    color: var(--text-primary);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
 }
 
 .vault-item-actions {
@@ -639,7 +667,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .vault-act-btn {
     background: rgba(255, 255, 255, 0.05);
-    border: none;
+    border: 1px solid transparent;
     color: var(--text-primary);
     width: 36px;
     height: 36px;
@@ -654,11 +682,22 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .vault-act-btn:hover {
     background: var(--accent-primary);
     color: #000;
+    transform: scale(1.05);
+}
+
+.vault-act-btn.delete-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
 }
 
 .vault-act-btn.delete-btn:hover {
     background: var(--danger);
     color: white;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Tabs */
